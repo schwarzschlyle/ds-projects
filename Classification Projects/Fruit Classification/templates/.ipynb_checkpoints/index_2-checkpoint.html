@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Banana Ripeness Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #plot {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        #image {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Banana Ripeness Prediction</h1>
+    <form method="POST" action="/" enctype="multipart/form-data">
+        <label for="image">Upload an image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+        <div id="result">
+            The probability of ripeness is: {{ prediction }}%
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div id="result" style="color: red;">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    {% if plot_path %}
+        <div id="plot">
+            <img src="{{ plot_path }}" alt="Training Loss Plot">
+        </div>
+    {% endif %}
+ 
+</body>
+</html>
